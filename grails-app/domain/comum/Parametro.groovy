@@ -9,7 +9,7 @@ class Parametro  implements Serializable {
     String valor
 
     static constraints = {
-        chave nullable: false
+        chave nullable: false , unique: true
         valor nullable: false
     }
 }
