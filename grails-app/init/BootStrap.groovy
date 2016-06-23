@@ -9,7 +9,7 @@ class BootStrap {
                 username: 'admin',
                 password: 'senha',
                 enabled: true).save(failOnError: true)
-        
+
                 ChaveParametro.values().each {
                     Parametro.findByChave(it) ?: new Parametro(
                             chave: it,
