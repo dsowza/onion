@@ -14,8 +14,8 @@ class Produto implements Serializable  {
     static hasMany = [imagens: ImagemProduto]
 
     static constraints = {
-        codigo maxSize: 20, unique: true
-        nome maxSize: 255
+        codigo maxSize: 20,nullable: false, unique: true
+        nome maxSize: 255, nullable: false
         valor nullable: false
         descricao maxSize: 1000
     }
