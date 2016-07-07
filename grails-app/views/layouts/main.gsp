@@ -53,10 +53,19 @@
 
 <!-- Morris Charts JavaScript -->
 <script src="${resource(dir: "sb-admin/bower_components/raphael/", file: "raphael-min.js")}"></script>
-%{--<script src="${resource(dir: "sb-admin/bower_components/morrisjs/", file: "morris.min.js")}"></script>--}%
-%{--<script src="${resource(dir: "sb-admin/js/", file: "morris-data.js")}"></script>--}%
 
 <!-- Custom Theme JavaScript -->
 <script src="${resource(dir: "sb-admin/dist/js/", file: "sb-admin-2.js")}"></script>
+
+<script src="${resource(dir: "sb-admin/bower_components/inputmask/min/", file: "jquery.inputmask.bundle.min.js")}"></script>
+
+<script src="${resource(dir: "sb-admin/bower_components/", file: "jquery.maskMoney.min.js")}"></script>
+
+<script>
+    $(function() {
+        $('.maskMoney').maskMoney();
+    })
+</script>
+
 </body>
 </html>
