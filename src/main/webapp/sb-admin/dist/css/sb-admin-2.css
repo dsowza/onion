@@ -214,6 +214,7 @@ body {
     margin-top: 25%;
 }
 
+
 .flot-chart {
     display: block;
     height: 400px;
@@ -351,4 +352,8 @@ table.dataTable thead .sorting:after {
 
 .panel-yellow a:hover {
     color: #df8a13;
+}
+
+.login{
+    margin-top: 10%;
 }

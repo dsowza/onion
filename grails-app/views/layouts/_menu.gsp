@@ -12,6 +12,11 @@
                 </div>
                 <!-- /input-group -->
             </li>
+
+            <li>
+                <g:link action="index" controller="produto"><i class="fa fa-th-list fa-fw"></i> Produto</g:link>
+            </li>
+
             <li>
                 <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>

@@ -6,19 +6,16 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-@Secured('isAuthenticated()')
+@Secured('IS_AUTHENTICATED_REMEMBERED')
 class ProdutoController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    //static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Produto.list(params), model:[produtoCount: Produto.count()]
     }
 
-    def show(Produto produto) {
-        respond produto
-    }
 
     def create() {
         respond new Produto(params)
@@ -40,13 +37,7 @@ class ProdutoController {
 
         produto.save flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'produto.label', default: 'Produto'), produto.id])
-                redirect produto
-            }
-            '*' { respond produto, [status: CREATED] }
-        }
+        redirect action:  "index"
     }
 
     def edit(Produto produto) {
@@ -69,18 +60,12 @@ class ProdutoController {
 
         produto.save flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'produto.label', default: 'Produto'), produto.id])
-                redirect produto
-            }
-            '*'{ respond produto, [status: OK] }
-        }
+        redirect action:  "index"
     }
 
     @Transactional
-    def delete(Produto produto) {
-
+    def deletar() {
+        def produto = Produto.findById(params.id)
         if (produto == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -89,13 +74,7 @@ class ProdutoController {
 
         produto.delete flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'produto.label', default: 'Produto'), produto.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
+        redirect action: "index"
     }
 
     protected void notFound() {
